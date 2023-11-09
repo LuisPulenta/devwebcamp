@@ -17,19 +17,12 @@ class PonentesController {
 
     public static function crear(Router $router) {
         
-
         $alertas = [];
-       
-
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-       
-           
-        }
-
+              
         $router->render('admin/ponentes/crear', [
-            'titulo' => 'Registrar Ponente'
+            'titulo' => 'Registrar Ponente',
+            'alertas' => $alertas       
             
         ]);
     }
-
 }
