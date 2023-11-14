@@ -47,11 +47,13 @@
                 </tbody>
 
             </table>
-
-        
         <?php } else { ?>
             <p class="text-center">No hay ponentes aún<noscript></noscript></p>
 
         <?php }?>
-
 </div>
+
+<?php
+
+  echo $paginacion;  
+?>

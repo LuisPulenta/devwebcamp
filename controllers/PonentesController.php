@@ -4,6 +4,7 @@ namespace Controllers;
 
 use MVC\Router;
 use Model\Ponente;
+use Classes\Paginacion;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class PonentesController {
@@ -11,16 +12,35 @@ class PonentesController {
     //--------------------------------------------------------------
     public static function index(Router $router) {
 
-        $ponentes = Ponente::all();
-
         if(!is_admin()){
             header('Location:/login');
         }
         
-         // Render a la vista 
+        $pagina_actual = $_GET['page'];
+        $pagina_actual = filter_var($pagina_actual, FILTER_VALIDATE_INT);
+
+        if(!$pagina_actual || $pagina_actual <1){
+            header('Location:/admin/ponentes?page=1');
+        }
+
+        $registros_por_pagina=8;
+
+        $total= Ponente::total();
+
+        $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total);
+
+        if($paginacion->total_paginas()<$pagina_actual){
+             header('Location:/admin/ponentes?page=1');
+         }
+
+        //$ponentes = Ponente::all();
+        $ponentes = Ponente::paginar($registros_por_pagina,$paginacion->offset());
+        
+        // Render a la vista 
          $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes / Conferencistas',
-            'ponentes'=>$ponentes
+            'ponentes'=>$ponentes,
+            'paginacion'=>$paginacion->paginacion()
         ]);
 
     }
@@ -28,6 +48,10 @@ class PonentesController {
     //--------------------------------------------------------------
     public static function crear(Router $router) {
         
+        if(!is_admin()){
+            header('Location:/login');
+        }
+
         $alertas = [];
         $ponente = new Ponente;
 
@@ -84,7 +108,11 @@ class PonentesController {
 
     //--------------------------------------------------------------
     public static function editar(Router $router) {
-        
+
+        if(!is_admin()){
+            header('Location:/login');
+        }
+
         $alertas = [];
 
         //Validar id
@@ -164,6 +192,10 @@ class PonentesController {
 
     //--------------------------------------------------------------
     public static function eliminar() {
+
+        if(!is_admin()){
+            header('Location:/login');
+        }
         
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
            
