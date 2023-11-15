@@ -104,10 +104,9 @@ class ActiveRecord {
     }
 
     // Obtener todos los Registros
-    public static function all() {
-        $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC";
+    public static function all($order = 'DESC') {
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY id {$order}";
         $resultado = self::consultarSQL($query);
-        debuguear($resultado);
         return $resultado;
     }
 
@@ -195,6 +194,20 @@ class ActiveRecord {
     public function eliminar() {
         $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
         $resultado = self::$db->query($query);
+        return $resultado;
+    }
+
+    // Busqueda Where con Múltiples opciones
+    public static function whereArray($array = []) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ";
+        foreach($array as $key => $value) {
+            if($key == array_key_last($array)) {
+                $query .= " {$key} = '{$value}'";
+            } else {
+                $query .= " {$key} = '{$value}' AND ";
+            }
+        }
+        $resultado = self::consultarSQL($query);
         return $resultado;
     }
 }
