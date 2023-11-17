@@ -11,16 +11,16 @@ class APIPonentes {
         echo json_encode($ponentes);
     }
 
-    // public static function ponente() {
-    //     $id = $_GET['id'];
-    //     $id = filter_var($id, FILTER_VALIDATE_INT);
+    public static function ponente() {
+        $id = $_GET['id'];
+        $id = filter_var($id, FILTER_VALIDATE_INT);
 
-    //     if(!$id || $id < 1) {
-    //         echo json_encode([]);
-    //         return;
-    //     }
+        if(!$id || $id < 1) {
+            echo json_encode([]);
+            return;
+        }
 
-    //     $ponente = Ponente::find($id);
-    //     echo json_encode($ponente, JSON_UNESCAPED_SLASHES);
-    // }
+        $ponente = Ponente::find($id);
+        echo json_encode($ponente, JSON_UNESCAPED_SLASHES);
+    }
 }
