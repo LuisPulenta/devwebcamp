@@ -51,7 +51,7 @@
         function buscarPonentes(e) {
             const busqueda = e.target.value;
 
-            if(busqueda.length >= 3) {
+            if (busqueda.length >= 3) {
                 const expresion = new RegExp(busqueda, "i");
                 ponentesFiltrados = ponentes.filter(ponente => {
                     if(ponente.nombre.toLowerCase().search(expresion) != -1) {
