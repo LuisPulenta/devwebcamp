@@ -26,6 +26,18 @@
         #{$modificador}__heading{
             color:v.$secundario;
         }
+
+        .evento__informacion {
+            background-color: v.$secundario;
+            &:hover {
+                background-color: darken(v.$secundario, 10%);
+            }
+        }
+    }
+
+    .swiper-button-next, 
+    .swiper-button-prev {
+        color: rgba(v.$blanco, .7);
     }
 }
 
@@ -33,7 +45,7 @@
     &__hora {
         font-weight: v.$bold;
     }
-
+    
     &__informacion {
         padding: 2rem;
         border-radius: 1rem;
@@ -47,6 +59,15 @@
 
     }
 
+    &__nombre {
+        font-size: 2rem;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
     &__introduccion {
         font-size: 1.8rem;
         display: -webkit-box;
@@ -58,8 +79,6 @@
             -webkit-line-clamp: 2;
         }
     }
-
-    
 
     &__autor-info{
         display: flex;;

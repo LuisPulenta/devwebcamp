@@ -14,9 +14,10 @@
 
     &__enlace{
         color:v.$blanco;
-        font-size: 2.2rem;
+        font-size: 2rem;
         padding: 2rem;
 
+        &--actual,
         &:hover{
             background-color: v.$blanco;
             color: v.$azul;
