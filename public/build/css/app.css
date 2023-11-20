@@ -653,22 +653,22 @@ h3 {
   -webkit-font-smoothing: antialiased;
   font-family: "Font Awesome 6 Brands";
 }
-.speaker-sociales__enlace[href*="https://facebook.com"]::before {
+.speaker-sociales__enlace[href*="facebook.com"]::before {
   content: "\f39e";
 }
-.speaker-sociales__enlace[href*="https://github.com"]::before {
+.speaker-sociales__enlace[href*="github.com"]::before {
   content: "\f09b";
 }
-.speaker-sociales__enlace[href*="https://tiktok.com"]::before {
+.speaker-sociales__enlace[href*="tiktok.com"]::before {
   content: "\e07b";
 }
-.speaker-sociales__enlace[href*="https://instagram.com"]::before {
+.speaker-sociales__enlace[href*="instagram.com"]::before {
   content: "\f16d";
 }
-.speaker-sociales__enlace[href*="https://youtube.com"]::before {
+.speaker-sociales__enlace[href*="youtube.com"]::before {
   content: "\f167";
 }
-.speaker-sociales__enlace[href*="https://twitter.com"]::before {
+.speaker-sociales__enlace[href*="twitter.com"]::before {
   content: "\f099";
 }
 .speaker-sociales__ocultar {
@@ -849,6 +849,13 @@ h3 {
     left: calc(100% - 5rem);
     top: calc(50% - 2.5rem);
   }
+}
+
+.pagina_404__contenedor {
+  text-align: center;
+}
+.pagina_404__enlace {
+  color: #007df4;
 }
 
 .formulario {
@@ -1224,22 +1231,22 @@ h3 {
   -webkit-font-smoothing: antialiased;
   font-family: "Font Awesome 6 Brands";
 }
-.menu-redes__enlace[href*="https://facebook.com"]::before {
+.menu-redes__enlace[href*="facebook.com"]::before {
   content: "\f39e";
 }
-.menu-redes__enlace[href*="https://github.com"]::before {
+.menu-redes__enlace[href*="github.com"]::before {
   content: "\f09b";
 }
-.menu-redes__enlace[href*="https://tiktok.com"]::before {
+.menu-redes__enlace[href*="tiktok.com"]::before {
   content: "\e07b";
 }
-.menu-redes__enlace[href*="https://instagram.com"]::before {
+.menu-redes__enlace[href*="instagram.com"]::before {
   content: "\f16d";
 }
-.menu-redes__enlace[href*="https://youtube.com"]::before {
+.menu-redes__enlace[href*="youtube.com"]::before {
   content: "\f167";
 }
-.menu-redes__enlace[href*="https://twitter.com"]::before {
+.menu-redes__enlace[href*="twitter.com"]::before {
   content: "\f099";
 }
 .menu-redes__ocultar {
