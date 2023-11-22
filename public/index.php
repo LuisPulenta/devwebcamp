@@ -7,11 +7,13 @@ use Controllers\APIEventos;
 use Controllers\APIPonentes;
 use Controllers\AuthController;
 use Controllers\EventosController;
+use Controllers\PaginasController;
 use Controllers\RegalosController;
 use Controllers\PonentesController;
+use Controllers\RegistroController;
 use Controllers\DashboardController;
 use Controllers\RegistradosController;
-use Controllers\PaginasController;
+
 
 $router = new Router();
 
@@ -58,6 +60,15 @@ $router->get('/api/eventos-horario', [APIEventos::class, 'index']);
 $router->get('/api/ponentes', [APIPonentes::class, 'index']);
 $router->get('/api/ponente', [APIPonentes::class, 'ponente']);
 
+// Registro de Usuarios
+$router->get('/finalizar-registro', [RegistroController::class, 'crear']);
+$router->post('/finalizar-registro/gratis', [RegistroController::class, 'gratis']);
+$router->post('/finalizar-registro/pagar', [RegistroController::class, 'pagar']);
+$router->get('/finalizar-registro/conferencias', [RegistroController::class, 'conferencias']);
+$router->post('/finalizar-registro/conferencias', [RegistroController::class, 'conferencias']);
+
+// Boleto virtual
+$router->get('/boleto', [RegistroController::class, 'boleto']);
 
 $router->get('/admin/registrados', [RegistradosController::class, 'index']);
 
