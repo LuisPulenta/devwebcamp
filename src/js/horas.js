@@ -20,7 +20,6 @@
         if(!Object.values(busqueda).includes('')) {
             (async () => {
                 await buscarEventos();
-
                 const id = inputHiddenHora.value;
 
                 // Resaltar la hora actual
@@ -33,6 +32,7 @@
         }
 
         function terminoBusqueda(e) {
+            
             busqueda[e.target.name] = e.target.value;
 
             // Reiniciar los campos ocultos y el selector de horas

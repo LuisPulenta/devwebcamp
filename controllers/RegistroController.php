@@ -12,11 +12,29 @@ use Model\Ponente;
 use Model\Usuario;
 use Model\Registro;
 use Model\Categoria;
+use Model\EventosRegistros;
 
 class RegistroController {
 
 //---------------------------------------------------------------------------------------
     public static function crear(Router $router) {
+        if(!is_auth()) {
+            header('Location: /');
+            return;
+        }
+
+        // Verificar si el usuario ya esta registrado
+        $registro = Registro::where('usuario_id', $_SESSION['id']);
+
+        if(isset($registro) && ($registro->paquete_id === "3" || $registro->paquete_id === "2" )) {
+            header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
+        }
+
+        if(isset($registro) && $registro->paquete_id === "1") {
+            header('Location: /finalizar-registro/conferencias');
+            return;
+        }
 
         $router->render('registro/crear', [
             'titulo' => 'Finalizar Registro'
@@ -31,7 +49,6 @@ class RegistroController {
             header('Location: /login');
             return;
         }
-
 
         // Verificar si el usuario ya esta registrado
         $registro = Registro::where('usuario_id', $_SESSION['id']);
@@ -144,10 +161,10 @@ class RegistroController {
         }
 
         // Redireccionar a boleto virtual en caso de haber finalizado su registro
-        // if(isset($registro->regalo_id) && $registro->paquete_id === "1") {
-        //     header('Location: /boleto?id=' . urlencode($registro->token));
-        //     return;
-        // }
+        if(isset($registro->regalo_id) && $registro->paquete_id === "1") {
+            header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
+        }
 
         $eventos = Evento::ordenar('hora_id', 'ASC');
 
@@ -175,7 +192,7 @@ class RegistroController {
             }
         }
         
-        // $regalos = Regalo::all('ASC');
+         $regalos = Regalo::all('ASC');
 
         // Manejando el registro mediante $_POST
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -245,7 +262,7 @@ class RegistroController {
         $router->render('registro/conferencias', [
             'titulo' => 'Elige Workshops y Conferencias',
             'eventos' => $eventos_formateados,
-            // 'regalos' => $regalos
+            'regalos' => $regalos
         ]);
     }
 }
